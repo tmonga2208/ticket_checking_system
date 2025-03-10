@@ -1,54 +1,63 @@
-# React + TypeScript + Vite
+# Ticket Checking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A basic ticketing system that generates QR codes from a CSV file and verifies them through a web-based scanner.
 
-Currently, two official plugins are available:
+## Repository
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[GitHub Repository](https://github.com/tmonga2208/ticket_checking_system)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Converts CSV entries into QR codes with unique IDs.
+- Generates an output file containing QR codes.
+- Uses `html5-qrcode` to scan and validate tickets.
+- Displays status messages: **Success**, **Failure**, or **Already Scanned**.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Installation & Usage
+
+### 1. Clone the Repository
+
+```sh
+  git clone https://github.com/tmonga2208/ticket_checking_system.git
+  cd ticket_checking_system
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Generate QR Codes from CSV
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Navigate to the `python_script` folder and run the script:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```sh
+  cd python_script
+  python generate_qr.py
 ```
+
+This script:
+
+- Reads the CSV file containing names and unique IDs.
+- Generates QR codes for each entry.
+- Creates an output file containing the QR codes.
+
+### 3. Use the Website for Scanning
+
+- Use the generated output file in the web interface.
+- The website utilizes `html5-qrcode` for scanning.
+- It validates the unique ID and displays the result:
+  - ✅ **Success**: Valid ticket.
+  - ❌ **Failure**: Invalid ticket.
+  - ⚠️ **Already Scanned**: Ticket was used before.
+
+## Technologies Used
+
+- **Python** (for QR code generation)
+- **HTML5 + JavaScript** (`html5-qrcode` for scanning)
+
+## Contribution
+
+Feel free to fork and contribute by creating pull requests.
+
+## License
+
+This project is open-source and available under the MIT License.
+
+---
+Happy scanning! 🚀
