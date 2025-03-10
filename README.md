@@ -2,10 +2,6 @@
 
 A basic ticketing system that generates QR codes from a CSV file and verifies them through a web-based scanner.
 
-## Repository
-
-[GitHub Repository](https://github.com/tmonga2208/ticket_checking_system)
-
 ## Features
 
 - Converts CSV entries into QR codes with unique IDs.
@@ -28,7 +24,7 @@ Navigate to the `python_script` folder and run the script:
 
 ```sh
   cd python_script
-  python generate_qr.py
+  python qrscript.py
 ```
 
 This script:
